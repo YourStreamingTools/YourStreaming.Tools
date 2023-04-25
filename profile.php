@@ -67,7 +67,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="../index.php">YourStreamingTools</a>
+            <a class="navbar-brand" href="index.php">YourStreamingTools</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="profile.php">View Profile</a></li>
