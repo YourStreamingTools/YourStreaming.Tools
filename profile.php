@@ -104,8 +104,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <button type="button" class="btn btn-primary" id="show-api-key">Show API Key</button>
     <button type="button" class="btn btn-primary" id="hide-api-key" style="display:none;">Hide API Key</button>
     <br><br>
-    <button class="btn btn-primary" onclick="showOBSInfo()">HOW TO PUT ON STREAM</button>
-    <br><br>
     <!--<a href="change_password.php" class="btn btn-primary">Change Password</a>-->
     <a href="logout.php" class="btn btn-primary">Logout</a>
 </div>
