@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>YourBotsOnline API</title>
 	<link rel="icon" href="img/logo.png" type="image/png" />
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 	<div class="container">
