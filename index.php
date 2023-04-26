@@ -9,7 +9,8 @@
 <body>
 	<div class="container">
 		<h1>YourStreamingTools API</h1>
-		<p><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please signup using the signup button</em></p>
+		<p><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please signup/login below.</em></p>
+		<a href="login.php"><button class="button">Login</button></a><a href="register.php"><button class="button-register">Register</button></a>
 		<br>
 		<p>We're currently supporting the following APIs:</p>
 		<ul>
