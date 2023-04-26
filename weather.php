@@ -54,11 +54,10 @@ function getWindDirection($deg) {
 
 // Extract the weather information from the API data
 $description = $data['weather'][0]['description'];
-$temperatureC = round($data['main']['temp'], 1);
-$temperatureF = round($temperatureC * 9 / 5 + 32, 1);
+$temperatureC = round($data['main']['temp'], 1) . '&deg;C';
+$temperatureF = round($temperatureC * 9 / 5 + 32, 1) . '&deg;F';
 $windSpeed = round($data['wind']['speed'] * 3.6, 1);
 $windSpeedMPH = round($windSpeed / 1.609344, 2);
 $windDirection = getWindDirection($data['wind']['deg']);
-
-echo "The weather in {$data['name']}, {$data['sys']['country']}: {$description} with a temperature of {$temperatureC}°C ({$temperatureF}°F). Wind is blowing from the {$windDirection} at {$windSpeed}kph ({$windSpeedMPH}mph) and the humidity is {$data['main']['humidity']}%.";
 ?>
+The weather in <?php echo "{$data['name']}, {$data['sys']['country']}"; ?>: <?php echo $description; ?> with a temperature of <?php echo html_entity_decode($temperatureC); ?> (<?php echo html_entity_decode($temperatureF); ?>). Wind is blowing from the <?php echo $windDirection; ?> at <?php echo $windSpeed; ?>kph (<?php echo $windSpeedMPH; ?>mph) and the humidity is <?php echo $data['main']['humidity']; ?>%.
