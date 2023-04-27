@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $registration_enabled){
                 <li><a href="login.php">Login</a></li>
                 <li class="active"><a href="register.php">Sign Up</a></li>
             </ul>
-            <p class="navbar-text navbar-right"><a class="popup-link" onclick="showPopup()">&copy; <?php echo date("Y"); ?> YourListOnline. All rights reserved.</a></p>
+            <p class="navbar-text navbar-right"><a class="popup-link" onclick="showPopup()">&copy; <?php echo date("Y"); ?> YourStreamingTools. All rights reserved.</a></p>
         </div>
     </nav>
     <div class="col-md-6">
