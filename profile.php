@@ -73,7 +73,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <li class="active"><a href="profile.php">View Profile</a></li>
 			<li><a href="update_profile.php">Update Profile</a></li>
         </ul>
-        <p class="navbar-text navbar-right"><a class="popup-link" onclick="showPopup()">&copy; <?php echo date("Y"); ?> YourListOnline. All rights reserved.</a></p>
+        <p class="navbar-text navbar-right"><a class="popup-link" onclick="showPopup()">&copy; <?php echo date("Y"); ?> YourStreamingTools. All rights reserved.</a></p>
     </div>
 </nav>
 <div class="col-md-6">
