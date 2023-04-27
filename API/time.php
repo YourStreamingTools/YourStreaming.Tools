@@ -21,13 +21,8 @@ if (isset($_GET['api'])) {
 // Require database connection
 require_once "db_connect.php";
 
-// Check if the connection is successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Prepare the SQL statement to retrieve the channel name and username for the given API key
-$stmt = $conn->prepare("SELECT channelname FROM allowed_users WHERE api_key = ?");
+$stmt = $conn->prepare("SELECT username FROM users WHERE api_key = ?");
 $stmt->bind_param("s", $api_key);
 
 // Execute the SQL statement
