@@ -71,7 +71,6 @@ $conn->close();
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/about.js"></script>
-  <script src="js/obsbutton.js"></script>
   <script src="js/profile.js"></script>
   <style type="text/css">
     body {
