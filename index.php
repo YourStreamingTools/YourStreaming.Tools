@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>YourBotsOnline API</title>
-	<link rel="icon" href="img/logo.png" type="image/png" />
+	<link rel="icon" href="img/logo.ico" type="image/png" />
+    <link rel="apple-touch-icon" href="img/logo.ico">
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
