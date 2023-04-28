@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>YourBotsOnline API</title>
+	<title>YourStreamingTools</title>
 	<link rel="icon" href="img/logo.ico" type="image/png" />
     <link rel="apple-touch-icon" href="img/logo.ico">
 	<link rel="stylesheet" href="css/index.css">
