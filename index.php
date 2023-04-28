@@ -26,12 +26,12 @@
 					switch ($api) {
 						case 'Time':
 							echo "<p>This API provides the current time in various timezones.<br>";
-							echo "Usage is time.php?timezone=Australia/Sydney&api=API_KEY</p>";
+							echo "Usage is https://api.yourstreaming.tools/time.php?timezone=Australia/Sydney&api=API_KEY</p>";
 							echo "</p>";
 							break;
 						case 'Weather':
 							echo "<p>This API provides the current weather conditions for a given location.<br>";
-							echo "Usage is weather.php?city=Sydney&api=API_KEY</p>";
+							echo "Usage is https://api.yourstreaming.tools/weather.php?city=Sydney&api=API_KEY</p>";
 							echo "</p>";
 							break;
 						case 'Todo-list':
