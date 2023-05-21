@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>YourStreamingTools</title>
-	<link rel="icon" href="img/logo.ico" type="image/png" />
-    <link rel="apple-touch-icon" href="img/logo.ico">
+	<link rel="icon" href="https://cdn.yourstreaming.tools/img/logo.ico" type="image/png" />
+    <link rel="apple-touch-icon" href="https://cdn.yourstreaming.tools/img/logo.ico">
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
