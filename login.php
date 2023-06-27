@@ -157,6 +157,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
+        <br><br>
+        <a href=""><button class="twitch-button">Login with Twitch (COMING SOON)</button></a>
+		<a href=""><button class="discord-button">Login with Discord (COMING SOON)</button></a>
     </div>    
 </body>
 </html>
