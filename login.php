@@ -1,56 +1,140 @@
 <?php
+// Set your Twitch application credentials
+$clientID = '';
+$redirectURI = '';
+$clientSecret = '';
+$IDScope = 'openid';
+
+// Start PHP session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect them to the profile page
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: profile.php");
+// If the user is already logged in, redirect them to the profile page
+if (isset($_SESSION['access_token'])) {
+    header('Location: profile.php');
     exit;
 }
 
-// Twitch credentials
-$client_id = '';
-$client_secret = '';
-$redirect_uri = '';
-$scopes = 'user:read:email';
+// If the user is not logged in and no authorization code is present, redirect to Twitch authorization page
+if (!isset($_SESSION['access_token']) && !isset($_GET['code'])) {
+    header('Location: https://id.twitch.tv/oauth2/authorize' .
+        '?client_id=' . $clientID .
+        '&redirect_uri=' . $redirectURI .
+        '&response_type=code' .
+        '&scope=' . $IDScope);
+    exit;
+}
 
-// If the user is redirected back with a code
+// If an authorization code is present, exchange it for an access token
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
-    $token_url = "https://id.twitch.tv/oauth2/token?client_id=$client_id&client_secret=$client_secret&code=$code&grant_type=authorization_code&redirect_uri=$redirect_uri";
-    
-    // Get OAuth token
-    $token_response = file_get_contents($token_url);
-    $token_data = json_decode($token_response, true);
-    $access_token = $token_data['access_token'];
 
-    // Get user info
-    $user_url = "https://api.twitch.tv/helix/users";
-    $opts = [
-        "http" => [
-            "method" => "GET",
-            "header" => "Authorization: Bearer $access_token\r\nClient-Id: $client_id"
-        ]
-    ];
-    $context = stream_context_create($opts);
-    $user_response = file_get_contents($user_url, false, $context);
-    $user_data = json_decode($user_response, true);
+    // Exchange the authorization code for an access token
+    $tokenURL = 'https://id.twitch.tv/oauth2/token';
+    $postData = array(
+        'client_id' => $clientID,
+        'client_secret' => $clientSecret,
+        'code' => $code,
+        'grant_type' => 'authorization_code',
+        'redirect_uri' => $redirectURI
+    );
 
-    if (isset($user_data['data'][0])) {
-        $twitch_user = $user_data['data'][0];
+    $curl = curl_init($tokenURL);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($postData));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($curl);
 
-        // Store user info in session
-        $_SESSION["loggedin"] = true;
-        $_SESSION["user_id"] = $twitch_user['id'];
-        $_SESSION["username"] = $twitch_user['display_name'];
-        $_SESSION["email"] = $twitch_user['email'];
+    if ($response === false) {
+        // Handle cURL error
+        echo 'cURL error: ' . curl_error($curl);
+        exit;
+    }
 
-        // Redirect user to profile page
-        header("location: profile.php");
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    if ($httpCode !== 200) {
+        // Handle non-successful HTTP response
+        echo 'HTTP error: ' . $httpCode;
+        exit;
+    }
+
+    curl_close($curl);
+
+    // Extract the access token from the response
+    $responseData = json_decode($response, true);
+    $accessToken = $responseData['access_token'];
+
+    // Store the access token in the session
+    $_SESSION['access_token'] = $accessToken;
+
+    // Fetch the user's Twitch username and profile image URL
+    $userInfoURL = 'https://api.twitch.tv/helix/users';
+    $curl = curl_init($userInfoURL);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer ' . $_SESSION['access_token'],
+        'Client-ID: ' . $clientID
+    ]);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $userInfoResponse = curl_exec($curl);
+
+    if ($userInfoResponse === false) {
+        // Handle cURL error
+        echo 'cURL error: ' . curl_error($curl);
+        exit;
+    }
+
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    if ($httpCode !== 200) {
+        // Handle non-successful HTTP response
+        echo 'HTTP error: ' . $httpCode;
+        exit;
+    }
+
+    curl_close($curl);
+
+    $userInfo = json_decode($userInfoResponse, true);
+
+    if (isset($userInfo['data']) && count($userInfo['data']) > 0) {
+        $twitchUsername = $userInfo['data'][0]['login'];
+        $twitchDisplayName = $userInfo['data'][0]['display_name'];
+        $profileImageUrl = $userInfo['data'][0]['profile_image_url'];
+        $twitchUserId = $userInfo['data'][0]['id'];
+        
+        // Database connect
+        require_once "db_connect.php";
+
+        // Insert/update the access token, profile image URL, user ID, and display name in the 'users' table
+        $insertQuery = "INSERT INTO users (username, access_token, api_key, profile_image, twitch_user_id, twitch_display_name, is_admin) VALUES ('$twitchUsername', '$accessToken', '" . bin2hex(random_bytes(16)) . "', '$profileImageUrl', '$twitchUserId', '$twitchDisplayName', 0)
+                    ON DUPLICATE KEY UPDATE access_token = '$accessToken', profile_image = '$profileImageUrl', twitch_user_id = '$twitchUserId', twitch_display_name = '$twitchDisplayName', last_login = ?";
+        $stmt = mysqli_prepare($conn, $insertQuery);
+        $last_login = date('Y-m-d H:i:s');
+        mysqli_stmt_bind_param($stmt, 's', $last_login);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect the user to the profile
+            header('Location: profile.php');
+            exit;
+        } else {
+            // Handle the case where the insertion failed
+            echo "Failed to save user information.";
+            exit;
+        }
+    } else {
+        // Failed to fetch user information from Twitch
+        echo "Failed to fetch user information from Twitch.";
         exit;
     }
 }
-
-// Generate Twitch login URL
-$twitch_login_url = "https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=$client_id&redirect_uri=$redirect_uri&scope=$scopes";
-header("location: $twitch_login_url");
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YourStreamingTools - Twitch Login</title>
+    <link rel="icon" href="https://cdn.yourstreamingtools.com/img/logo.jpeg" sizes="32x32" />
+    <link rel="icon" href="https://cdn.yourstreamingtools.com/img/logo.jpeg" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://cdn.yourstreamingtools.com/img/logo.jpeg" />
+    <meta name="msapplication-TileImage" content="https://cdn.yourstreamingtools.com/img/logo.jpeg" />
+</head>
+<body>
+    <p>Please wait while we redirect you to Twitch for authorization...</p>
+</body>
+</html>
