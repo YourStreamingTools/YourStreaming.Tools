@@ -20,6 +20,7 @@
         .api-link {
             display: block;
             margin-bottom: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -50,55 +51,109 @@
             <p class="subtitle has-text-grey-light"><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please login with Twitch below.</em></p>
             <p class="has-text-white">We're currently supporting the following APIs:</p>
             <ul>
-                <li><a href="?api=Time" class="api-link has-text-link">Time</a></li>
-                <li><a href="?api=Weather" class="api-link has-text-link">Weather</a></li>
-                <li><a href="?api=PublicQuotes" class="api-link has-text-link">Public Quotes</a></li>
-                <li><a href="?api=Music" class="api-link has-text-link">DMCA Music</a></li>
-                <li><a href="?api=Todo-list" class="api-link has-text-link">Todo list</a></li>
+                <li><span class="api-link has-text-link" data-target="#timeModal">Time</span></li>
+                <li><span class="api-link has-text-link" data-target="#weatherModal">Weather</span></li>
+                <li><span class="api-link has-text-link" data-target="#quotesModal">Public Quotes</span></li>
+                <li><span class="api-link has-text-link" data-target="#musicModal">DMCA Music</span></li>
+                <li><span class="api-link has-text-link" data-target="#todoModal">Todo list</span></li>
             </ul>
-            <div class="api-info">
-                <?php
-                    if (isset($_GET['api'])) {
-                        $api = $_GET['api'];
-                        switch ($api) {
-                            case 'Time':
-                                echo "<p>This API provides the current time in various timezones.<br>";
-                                echo "Usage is https://api.yourstreamingtools.com/time.php?timezone=Australia/Sydney&api=API_KEY<br><br>";
-                                echo "The API employs identical functions to those found in PHP Timezone.<br>For a list of supported timezones, <a href='https://www.php.net/manual/en/timezones.php' target='_blank'>click here</a>";
-                                echo "</p>";
-                                break;
-                            case 'Weather':
-                                echo "<p>This API provides the current weather conditions for a given location.<br>";
-                                echo "Usage is https://api.yourstreamingtools.com/weather.php?city=Sydney&api=API_KEY";
-                                echo "</p>";
-                                break;
-                            case 'PublicQuotes':
-                                echo "<p>This API provides you with a random quote from one of the following people:<br>";
-                                echo "Dorothy Parker, Noel Coward, Winston Churchill, Eleanor Roosevelt, Harpo Marx, Dale Carnegie, Terry Pratchett & Blackadder<br><br>";
-                                echo "Usage is <a href='https://api.yourstreamingtools.com/quotes.php' target='_blank'>https://api.yourstreamingtools.com/quotes.php</a>";
-                                echo "</p>";
-                                break;
-                            case 'Music':
-                                echo "While not strictly an API, we've developed a handy tool to enhance your streaming experience.<br><br>";
-                                echo "It functions as a browser source that can be integrated into your streaming software. For instance, within OBS, you can add this as a source, and there's an option under settings for the VoD Audio Track.<br><br>";
-                                echo "Essentially, when you visit this page, you'll find approximately 5 hours of music that automatically loops once the playlist concludes.<br><br>";
-                                echo "For detailed instructions on how to utilize this feature, please visit <a href='https://music.yourstreamingtools.com/' target='_blank'>music.yourstreamingtools.com</a>.";
-                                break;
-                            case 'Todo-list':
-                                echo "<p>This API allows users to create and manage todo lists.<br>";
-                                echo "Check it out here: <a href='https://yourlist.online/' target='_blank'>YourList.Online</a>";
-                                echo "</p>";
-                                break;
-                            default:
-                                echo "<p>Please select an API above to view its information.</p>";
-                        }
-                    } else {
-                        echo "<p>Please select an API above to view its information.</p>";
-                    }
-                ?>
-            </div>
         </div>
     </section>
+
+    <!-- Time Modal -->
+    <div class="modal" id="timeModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Time API</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>This API provides the current time in various timezones.<br>
+                Usage is https://api.yourstreamingtools.com/time.php?timezone=Australia/Sydney&api=API_KEY<br><br>
+                The API employs identical functions to those found in PHP Timezone.<br>For a list of supported timezones, <a href='https://www.php.net/manual/en/timezones.php' target='_blank'>click here</a></p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Close</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Weather Modal -->
+    <div class="modal" id="weatherModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Weather API</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>This API provides the current weather conditions for a given location.<br>
+                Usage is https://api.yourstreamingtools.com/weather.php?city=Sydney&api=API_KEY</p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Close</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Public Quotes Modal -->
+    <div class="modal" id="quotesModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Public Quotes API</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>This API provides you with a random quote from one of the following people:<br>
+                Dorothy Parker, Noel Coward, Winston Churchill, Eleanor Roosevelt, Harpo Marx, Dale Carnegie, Terry Pratchett & Blackadder<br><br>
+                Usage is <a href='https://api.yourstreamingtools.com/quotes.php' target='_blank'>https://api.yourstreamingtools.com/quotes.php</a></p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Close</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Music Modal -->
+    <div class="modal" id="musicModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">DMCA Music Tool</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>While not strictly an API, we've developed a handy tool to enhance your streaming experience.<br><br>
+                It functions as a browser source that can be integrated into your streaming software. For instance, within OBS, you can add this as a source, and there's an option under settings for the VoD Audio Track.<br><br>
+                Essentially, when you visit this page, you'll find approximately 5 hours of music that automatically loops once the playlist concludes.<br><br>
+                For detailed instructions on how to utilize this feature, please visit <a href='https://music.yourstreamingtools.com/' target='_blank'>music.yourstreamingtools.com</a>.</p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Close</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Todo List Modal -->
+    <div class="modal" id="todoModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Todo List API</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>This API allows users to create and manage todo lists.<br>
+                Check it out here: <a href='https://yourlist.online/' target='_blank'>YourList.Online</a></p>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-primary">Close</button>
+            </footer>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -109,6 +164,30 @@
                         const $target = document.getElementById(target);
                         el.classList.toggle('is-active');
                         $target.classList.toggle('is-active');
+                    });
+                });
+            }
+
+            const $modals = Array.prototype.slice.call(document.querySelectorAll('.modal'), 0);
+            const $modalButtons = Array.prototype.slice.call(document.querySelectorAll('.api-link'), 0);
+            const $modalCloses = Array.prototype.slice.call(document.querySelectorAll('.delete, .modal-background, .modal-card-foot .button'), 0);
+
+            if ($modalButtons.length > 0) {
+                $modalButtons.forEach(el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.querySelector(target);
+                        $target.classList.add('is-active');
+                    });
+                });
+            }
+
+            if ($modalCloses.length > 0) {
+                $modalCloses.forEach(el => {
+                    el.addEventListener('click', () => {
+                        $modals.forEach(modal => {
+                            modal.classList.remove('is-active');
+                        });
                     });
                 });
             }
