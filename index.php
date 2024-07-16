@@ -50,13 +50,11 @@
             <h1 class="title has-text-white">YourStreamingTools API</h1>
             <p class="subtitle has-text-grey-light"><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please login with Twitch below.</em></p>
             <p class="has-text-white">We're currently supporting the following APIs:</p>
-            <ul>
-                <li><span class="api-link has-text-link" data-target="#timeModal">Time</span></li>
-                <li><span class="api-link has-text-link" data-target="#weatherModal">Weather</span></li>
-                <li><span class="api-link has-text-link" data-target="#quotesModal">Public Quotes</span></li>
-                <li><span class="api-link has-text-link" data-target="#musicModal">DMCA Music</span></li>
-                <li><span class="api-link has-text-link" data-target="#todoModal">Todo list</span></li>
-            </ul>
+            <p><span class="api-link has-text-link" data-target="#timeModal">Time</span></p>
+            <p><span class="api-link has-text-link" data-target="#weatherModal">Weather</span></p>
+            <p><span class="api-link has-text-link" data-target="#quotesModal">Public Quotes</span></p>
+            <p><span class="api-link has-text-link" data-target="#musicModal">DMCA Music</span></p>
+            <p><span class="api-link has-text-link" data-target="#todoModal">Todo list</span></p>
         </div>
     </section>
 
