@@ -36,15 +36,14 @@
         </div>
         <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="login.php">Login</a>
-                <a class="navbar-item" href="register.php">Register</a>
+                <a class="navbar-item" href="login.php">Twitch Login</a>
             </div>
         </div>
     </nav>
     <section class="section">
         <div class="container content">
             <h1 class="title has-text-white">YourStreamingTools API</h1>
-            <p class="subtitle has-text-grey-light"><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please signup/login below.</em></p>
+            <p class="subtitle has-text-grey-light"><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please login with Twitch below.</em></p>
             <p class="has-text-white">We're currently supporting the following APIs:</p>
             <ul>
                 <li><a href="?api=Time" class="api-link has-text-link">Time</a></li>
