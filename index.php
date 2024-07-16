@@ -27,9 +27,7 @@
 <body>
     <nav class="navbar is-dark">
         <div class="navbar-brand">
-            <a class="navbar-item" href="../">
-                <img src="https://cdn.yourstreamingtools.com/img/logo.ico" alt="Logo">
-            </a>
+            <a class="navbar-item" href="../"><img src="https://cdn.yourstreamingtools.com/img/logo.ico" alt="Logo"> YourStreamingTools</a>
             <div class="navbar-burger burger" data-target="navbarMenu">
                 <span></span>
                 <span></span>
@@ -42,8 +40,10 @@
     </nav>
     <section class="section">
         <div class="container content">
-            <h1 class="title has-text-white">YourStreamingTools API</h1>
-            <p class="subtitle has-text-grey-light"><em>We kindly remind you that access to our server requires a pre-generated key.<br>If you don't have one, please login with Twitch below.</em></p>
+            <div class="notification is-warning">
+                We kindly remind you that access to our server requires a pre-generated key.<br>
+                <strong>Note:</strong> Registration is closed because we are currently working on a new website. Any keys that have been generated will continue to work until the new system is in place.
+            </div>
             <p class="has-text-white">We're currently supporting the following APIs:</p>
             <p><span class="api-link has-text-link" data-target="#timeModal">Time</span></p>
             <p><span class="api-link has-text-link" data-target="#weatherModal">Weather</span></p>
