@@ -52,6 +52,7 @@ if (isset($_GET['code'])) {
 
 // Generate Twitch login URL
 $twitch_login_url = "https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=$client_id&redirect_uri=$redirect_uri&scope=$scopes";
+header("location: $twitch_login_url");
 ?>
 <!DOCTYPE html>
 <html lang="en">
