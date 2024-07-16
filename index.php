@@ -6,6 +6,7 @@
     <link rel="icon" href="https://cdn.yourstreamingtools.com/img/logo.ico" type="image/png" />
     <link rel="apple-touch-icon" href="https://cdn.yourstreamingtools.com/img/logo.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             color: #FFFFFF;
@@ -36,7 +37,10 @@
         </div>
         <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="login.php">Twitch Login</a>
+                <a class="navbar-item" href="login.php">
+                    <span class="icon"><i class="fab fa-twitch"></i></span>
+                    <span>Twitch Login</span>
+                </a>
             </div>
         </div>
     </nav>
