@@ -144,7 +144,8 @@
             </header>
             <section class="modal-card-body">
                 <p>This API allows users to create and manage todo lists.<br>
-                Check it out here: <a href='https://yourlist.online/' target='_blank'>YourList.Online</a></p>
+                Check it out here: <a href='https://yourlistonline.com.au/' target='_blank'>YourListOnline</a></p>
+                <p class="has-text-grey-light"><em>Note: The Todo List functionality will be moved over to our new Twitch Chat Bot and System at <a href="https://botofthespecter.com/" target="_blank">https://botofthespecter.com/</a>.</em></p>
             </section>
             <footer class="modal-card-foot">
                 <button class="button is-primary">Close</button>
