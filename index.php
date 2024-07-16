@@ -27,7 +27,7 @@
 <body>
     <nav class="navbar is-dark">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="../">
                 <img src="https://cdn.yourstreamingtools.com/img/logo.ico" alt="Logo">
             </a>
             <div class="navbar-burger burger" data-target="navbarMenu">
@@ -37,12 +37,7 @@
             </div>
         </div>
         <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="login.php">
-                    <span class="icon"><i class="fab fa-twitch"></i></span>
-                    <span>Twitch Login</span>
-                </a>
-            </div>
+            <div class="navbar-start"></div>
         </div>
     </nav>
     <section class="section">
