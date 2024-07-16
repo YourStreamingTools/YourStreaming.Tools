@@ -41,8 +41,8 @@
     <section class="section">
         <div class="container content">
             <div class="notification is-warning">
-                We kindly remind you that access to our server requires a pre-generated key.<br>
-                <strong>Note:</strong> Registration is closed because we are currently working on a new website. Any keys that have been generated will continue to work until the new system is in place.
+                We kindly remind you that access to our server requires a pre-generated API key.<br>
+                <strong>Note:</strong><br>Registration is closed for new API Keys because we are currently working on a new website.<br>Any keys that have been generated will continue to work until the new system is in place.
             </div>
             <p class="has-text-white">We're currently supporting the following APIs:</p>
             <p><span class="api-link has-text-link" data-target="#timeModal">Time</span></p>
