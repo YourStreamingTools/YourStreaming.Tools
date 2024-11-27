@@ -34,7 +34,7 @@ window.onload = function() {
     var currentTrackDisplay = document.getElementById('currentTrack');
     var musicURL = '<?= $musicURL ?>';
     var mp3Files = <?= json_encode(array_values($mp3Files)) ?>;
-    var currentTrack = 0;
+    var currentTrack = Math.floor(Math.random() * mp3Files.length);
 
     function updateCurrentTrack() {
         var trackName = mp3Files[currentTrack].replace('.mp3', '');
