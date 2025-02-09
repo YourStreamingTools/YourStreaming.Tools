@@ -139,7 +139,7 @@ $mp3Files = array_diff(scandir($musicPath), array('..', '.'));
 <script>
 window.onload = function() {
     var audioPlayer = document.getElementById('audioPlayer');
-    var playlist = document.getElementById('playlist'); 1 
+    var playlist = document.getElementById('playlist');
     var tracks = playlist.getElementsByTagName('a');
     var currentTrack = Math.floor(Math.random() * tracks.length); // Start at a random track
     var currentTrackDisplay = document.getElementById('currentTrack');
@@ -151,6 +151,7 @@ window.onload = function() {
     if(tracks.length > 0) {
         updateCurrentTrackDisplay(tracks[currentTrack].text);
         audioPlayer.src = tracks[currentTrack].href; // Set the source to the random track
+        audioPlayer.play(); // Start playing the track immediately
     }
 
     // Set the initial volume to 0.1
@@ -158,16 +159,12 @@ window.onload = function() {
 
     audioPlayer.addEventListener('ended', function() {
         currentTrack++;
-        if(currentTrack < tracks.length) {
-            audioPlayer.src = tracks[currentTrack].href;
-            audioPlayer.play();
-            updateCurrentTrackDisplay(tracks[currentTrack].text);
-        } else {
-            currentTrack = 0;
-            audioPlayer.src = tracks[currentTrack].href;
-            audioPlayer.play();
-            updateCurrentTrackDisplay(tracks[currentTrack].text);
+        if(currentTrack >= tracks.length) {
+            currentTrack = 0; // Loop back to the first track
         }
+        audioPlayer.src = tracks[currentTrack].href;
+        audioPlayer.play();
+        updateCurrentTrackDisplay(tracks[currentTrack].text);
     }, false);
 
     for(var i = 0; i < tracks.length; i++) {
